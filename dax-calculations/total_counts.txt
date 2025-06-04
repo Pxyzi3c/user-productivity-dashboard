@@ -1,0 +1,18 @@
+========================================================================
+NOTE: THESE ARE COLLECTION OF SOME USED DAX CALCULATIONS FOR ITS CONTEXT
+========================================================================
+
+TotalUsers = 
+    COUNTROWS('Dim_Users')
+
+TotalEngineers = 
+    CALCULATE(
+        DISTINCTCOUNT('Dim_Users'[id]),
+        'Dim_Users'[role] = "Engineer"
+    )
+
+TotalInactiveUsers = 
+    CALCULATE(
+        DISTINCTCOUNT('Dim_Users'[id]),
+        ISBLANK('Fact_Logins'[id])
+    )

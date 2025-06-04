@@ -1,0 +1,15 @@
+========================================================================
+NOTE: THIS IS SELECTED DAX CALCULATION FOR ITS CONTEXT
+========================================================================
+
+AverageActiveUsers = 
+    AVERAGEX(
+        FILTER(
+            VALUES('Dim_Calendar'[Month-Year]),
+            NOT(
+                ISBLANK([TotalUsersLoggedIn]) ||
+                [TotalUsersLoggedIn] = 0
+            )
+        ),
+        [TotalUsersLoggedIn]
+    )

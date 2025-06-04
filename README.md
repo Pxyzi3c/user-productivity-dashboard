@@ -55,11 +55,4 @@ This project tackles that problem by **visualizing dynamic productivity KPIs** d
 | **Login Frequency** | Avg. logins per month                       |
 | **Excluded Users**  | Users filtered out due to inactivity        |
 
-## 📈 Impact
-This project showcases:
-- Practical DAX modeling in real-time scenarios.
-- Mastery of user behavior analytics in Power BI.
-- Enterprise-level dashboard UX/UI skills.
-- Clean, scalable data models using best practices.
-
 ---

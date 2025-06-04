@@ -1,0 +1,32 @@
+========================================================================
+NOTE: THESE ARE COLLECTIONS OF SOME USED DAX CALCULATIONS FOR ITS CONTEXT
+========================================================================
+
+TotalTeams = 
+    CALCULATE(
+        DISTINCTCOUNT('Dim_Segments'[segment]),
+        'Fact_Logins'
+    )
+
+TotalTeamsAll = 
+    COUNTROWS('Dim_Segments')
+
+TeamEngagementRate = 
+    DIVIDE([TotalTeams], [TotalTeamsAll])
+
+EngagementInsight = 
+    VAR FormattedEngagementRate = FORMAT([TeamEngagementRate], "0%")
+
+    VAR Excellent = "Excellent team engagement! " & [TeamRatio] & " or " & FormattedEngagementRate & " of all teams are active."
+    VAR Good = "Good team engagement! " & [TeamRatio] & " or " & FormattedEngagementRate & " of all teams are active." & " Keep it up!"
+    VAR Moderate = "Moderate. " & [TeamRatio] & " or " & FormattedEngagementRate & " of all teams are active." & " Please consider a check-in."
+    VAR Low = "Low engagement. " & [TeamRatio] & " or " & FormattedEngagementRate & " of all teams are active." & " Immediate attention recommended."
+    
+    RETURN
+        SWITCH(
+            TRUE(),
+            [TeamEngagementRate] >= 0.80, Excellent,
+            [TeamEngagementRate] >= 0.60, Good,
+            [TeamEngagementRate] >= 0.40, Moderate,
+            Low
+        )

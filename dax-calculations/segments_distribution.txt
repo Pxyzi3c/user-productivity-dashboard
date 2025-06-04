@@ -1,0 +1,32 @@
+========================================================================
+NOTE: THESE ARE COLLECTIONS OF SOME USED DAX CALCULATIONS FOR ITS CONTEXT
+========================================================================
+
+_TotalAfricanSegment = 
+    CALCULATE(
+        [TotalUsers],
+        Dim_Users[segment] = "African Segment"
+    )
+
+AfricanSegment = 
+    // Calculate the total number of distinct user segments.
+    VAR TotalUserSegments = 
+        COUNTROWS(
+            SUMMARIZE(
+                'Dim_Users',
+                'Dim_Users'[id],
+                'Dim_Users'[segment]
+            )
+        )
+
+    // Calculate the percentage of users in the Asia segment
+    VAR _percentage = ([_TotalAfricanSegment] / TotalUserSegments)
+
+    // Return the result based on the selected format
+    RETURN 
+        SWITCH(
+            [Selected Format],
+            "%", FORMAT(_percentage, "0%"),
+            "Count", FORMAT([_TotalAfricanSegment], "0"),
+            _percentage
+        )

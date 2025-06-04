@@ -1,0 +1,57 @@
+========================================================================
+NOTE: THIS IS SELECTED DAX CALCULATION FOR ITS CONTEXT
+========================================================================
+
+LoginTrend = 
+    VAR _HasMonthYearFilter =
+        HASONEFILTER('Dim_Calendar'[Month-Year])
+
+    VAR _CurrentMonth = MONTH(TODAY())
+    VAR _CurrentYear = YEAR(TODAY())
+    VAR _PreviousDate = EDATE(TODAY(), -1)
+    VAR _PreviousMonth = MONTH(_PreviousDate)
+    VAR _PreviousYear = YEAR(_PreviousDate)
+
+    VAR _CurrentMonthLogins =
+        IF(
+            _HasMonthYearFilter,
+            COUNTROWS(Fact_Logins),
+            CALCULATE(
+                COUNTROWS(Fact_Logins),
+                FILTER(
+                    ALL('Dim_Calendar'),
+                    'Dim_Calendar'[Month_Number] = _CurrentMonth &&
+                    'Dim_Calendar'[Year] = _CurrentYear
+                )
+            )
+        )
+
+    VAR _PreviousMonthLogins =
+        IF(
+            _HasMonthYearFilter,
+            CALCULATE(
+                COUNTROWS(Fact_Logins),
+                DATEADD('Dim_Calendar'[Date], -1, MONTH)
+            ),
+            CALCULATE(
+                COUNTROWS(Fact_Logins),
+                FILTER(
+                    ALL('Dim_Calendar'),
+                    'Dim_Calendar'[Month_Number] = _PreviousMonth &&
+                    'Dim_Calendar'[Year] = _PreviousYear
+                )
+            )
+        )
+
+    VAR _Result = 
+        DIVIDE(
+            _CurrentMonthLogins - _PreviousMonthLogins,
+            _PreviousMonthLogins
+        )
+
+    RETURN
+        IF(
+            ISBLANK(_Result),
+            0,
+            _Result
+        )
