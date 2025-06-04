@@ -62,15 +62,4 @@ This project showcases:
 - Enterprise-level dashboard UX/UI skills.
 - Clean, scalable data models using best practices.
 
-## 🎯 Ideal Roles for this Project
-- Data Analyst
-- Product Data Scientist
-- Business Intelligence Analyst
-- Customer Success Analytics
-- Employee Engagement Strategist
-
-## 🔐 Notes
-- This is a **simulation project** using anonymized data.
-- Built for demonstration, portfolio, and GitHub showcasing.
-
 ---

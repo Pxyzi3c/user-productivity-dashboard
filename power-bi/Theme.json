@@ -1,0 +1,29 @@
+﻿{
+  "name": "CY23SU02",
+  "dataColors": [
+    "#06874E", "#0A9B5A", "#0EBF6C", "#12E37E", "#16F790", "#1AFFA2", "#1EFFB4",
+    "#22FFC6", "#3599B8", "#DFBF8F", "#44C5BB", "#5F66B0", "#FB8281", "#F4D25A",
+    "#7F898A", "#A4DDED", "#FDAB89", "#B687AC", "#28738A", "#A78F8F", "#168980",
+    "#29635F", "#8B4AA4", "#B59525", "#475052", "#6A9FBD", "#8D7150", "#7B4F71",
+    "#1B4D5C", "#706600", "#0F5C55", "#1C2325"
+  ],
+  "foreground": "#131312",
+  "background": "#FFFFFF",
+  "foregroundNeutralSecondary": "#6C6966",
+  "backgroundLight": "#E5E0DA",
+  "foregroundNeutralTertiary": "#4BA7A2",
+  "backgroundNeutral": "#6C62BE",
+  "tableAccent": "#11BDFF",
+  "maximum": "#FF0000",
+  "center": "#FFFF00",
+  "minimum": "#00FF00",
+  "bad": "#FF0000",
+  "neutral": "#FFFF00",
+  "good": "#00FF00",
+  "textClasses": {
+    "label": { "fontFace": "Century Gothic" },
+    "callout": { "fontFace": "Century Gothic" },
+    "header": { "fontFace": "Century Gothic" },
+    "title": { "fontFace": "Century Gothic" }
+  }
+}
